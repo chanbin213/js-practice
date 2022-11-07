@@ -68,7 +68,58 @@
 
       <div class="alert alert-danger">
         <span id="num">5초 이내 구매시 사은품 증정</span>
-      </div>
+       </div>
+
+      <div style="overflow: hidden">
+        <div class="slide-container">
+          <div class="slide-box">
+            <img src="car1.png">
+          </div>
+          <div class="slide-box">
+            <img src="car2.png">
+          </div>
+          <div class="slide-box">
+            <img src="car3.png">
+          </div>
+        </div>
+     </div> 
+
+     <button class="slide-1">1</button>
+     <button class="slide-2">2</button>
+     <button class="slide-3">3</button>
+     <button class="next">다음</button>
+
+     <script>
+       var 사진 = 1;
+
+       $('.next').on('click', function(){
+         if(사진 == 1){
+           $('.slide-container').css('transform','translateX(-100vw)');
+           사진 = 2;
+         }else if(사진 == 2){
+           $('.slide-container').css('transform','translateX(-200vw)');
+           사진 = 3;
+         }else if(사진 == 3){
+           $('.slide-container').css('transform','translateX(0vw)');
+           사진 = 1;
+         }
+
+       });
+
+       
+       $('.slide-1').on('click', function() {
+        $('.slide-container').css('transform', 'translateX(0vw)');
+        사진 = 1;
+      });
+       $('.slide-2').on('click', function() {
+        $('.slide-container').css('transform', 'translateX(-100vw)');
+        사진 = 2;
+      });
+       $('.slide-3').on('click', function() {
+        $('.slide-container').css('transform', 'translateX(-200vw)');
+        사진 = 3;
+      });
+     </script>
 
       <script>
         var time =5;
