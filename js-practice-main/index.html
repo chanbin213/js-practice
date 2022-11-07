@@ -83,24 +83,36 @@
         setTimeout(function(){
           $('.alert').hide();
         }, 5000)
-
       </script>
 
       <script>
         $('form').on('submit', function(e){
-            if(document.getElementById('id').value ==''){
-                e.preventDefault();
-                alert('아이디')
-            }
-        })
-        $('form').on('submit', function(e){
+          var 입력한값 = document.getElementById('id').value;
+          if(/\S+@\S+\.\S+/.test(입력한값)){
+            alert('이메일 형식')
+            e.preventDefault();
+          }
+          if(입력한값 ==''){
+              e.preventDefault();
+              alert('아이디')
+          }
+          })
+
+          $('form').on('submit', function(e){
             if(document.getElementById('pw').value ==''){
-                e.preventDefault();
-                alert('비번')
+              e.preventDefault();
+              alert('비번')
             }else if(document.getElementById('pw').value.length < 6){
               e.preventDefault();
               alert('비번 짧음')
             }
+
+            var 비번 = document.getElementById('pw').value;
+            if ( /[A-Z]/.test(비번) == false ){
+              alert('대문자없는데요')
+              e.preventDefault();
+            }  
+
         })
         $('.login').on('click', function(){
             $('.black-bg').addClass('show-modal');
