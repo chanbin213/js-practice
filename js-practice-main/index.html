@@ -66,6 +66,26 @@
         <button id="login" class="login btn btn-danger">로그인</button>
       </div>
 
+      <div class="alert alert-danger">
+        <span id="num">5초 이내 구매시 사은품 증정</span>
+      </div>
+
+      <script>
+        var time =5;
+
+        setInterval(function(){
+          time--;
+          if(count>=0){
+            $('#num').html(time);
+          }
+        },1000)
+
+        setTimeout(function(){
+          $('.alert').hide();
+        }, 5000)
+
+      </script>
+
       <script>
         $('form').on('submit', function(e){
             if(document.getElementById('id').value ==''){
