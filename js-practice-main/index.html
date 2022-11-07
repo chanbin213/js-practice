@@ -42,6 +42,16 @@
       </nav> 
 
       <script>
+        $(window).on('scroll',function(){
+          if (window.scrollY > 100) {
+            $('.navbar-brand').css('font-size', '20px');
+          }else{
+            $('.navbar-brand').css('font-size', '30px');
+          }
+        })
+      </script>
+
+      <script>
         var count = 0;
         $('.badge').on('click', function(){
           count++;
@@ -65,6 +75,23 @@
         <h4>Shirts On Sale</h4>
         <button id="login" class="login btn btn-danger">로그인</button>
       </div>
+
+      <div class="lorem" style="width: 200px; height: 100px; overflow-y: scroll">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae voluptas voluptatum minus praesentium fugit debitis at, laborum ipsa itaque placeat sit, excepturi eius. Nostrum perspiciatis, eligendi quae consectetur praesentium exercitationem.
+      </div> 
+
+      <script>
+        $('.lorem').on('scroll',function(){
+          var 스크롤양 = document.querySelector('.lorem').scrollTop;
+          var 실제높이 = document.querySelector('.lorem').scrollHeight;
+          var 높이 = document.querySelector('.lorem').clientHeight;
+          if(스크롤양 + 높이 > 실제높이 - 10){
+            alert('다 읽음');
+          }
+        });
+      </script>
+
+      <div style="height:1000px;"></div>
 
       <div class="alert alert-danger">
         <span id="num">5초 이내 구매시 사은품 증정</span>
