@@ -99,3 +99,6 @@ ul.list::after {
 .form-hide{
   display: none;
 }
+.hide{
+  display: none;
+}

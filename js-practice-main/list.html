@@ -43,23 +43,45 @@
 
 <div class="container">
   <button class="btn btn-danger" id="more">더보기</button>
+  <button class="btn btn-danger hide" id="close">닫기</button>
+
 </div>
 
 <script>
+  var count = 0;
   $('#more').click(function(){
-    $.get('https://codingapple1.github.io/js/more1.json').done((data) =>{
-      
-      data.forEach((a)=>{
-          var col = 
-          `<div class="col-sm-4">
-            <img src="https://via.placeholder.com/600" class="w-100">
-            <h5>${a.title}</h5>
-            <p>가격 : ${a.price}원</p>
-            </div>`;
-            
-            $('.row').append(col);
+    count++;
+    if(count == 1){
+      $.get('https://codingapple1.github.io/js/more1.json').done((data) =>{
+        
+        data.forEach((a)=>{
+            var col = 
+            `<div class="col-sm-4" id="seceond">
+              <img src="https://via.placeholder.com/600" class="w-100">
+              <h5>${a.title}</h5>
+              <p>가격 : ${a.price}원</p>
+              </div>`;
+              
+              $('.row').append(col);
+            });
           });
-        });
+    }else if(count == 2){
+      $.get('https://codingapple1.github.io/js/more2.json').done((data) =>{
+        
+        data.forEach((a)=>{
+            var col = 
+            `<div class="col-sm-4" id="third">
+              <img src="https://via.placeholder.com/600" class="w-100">
+              <h5>${a.title}</h5>
+              <p>가격 : ${a.price}원</p>
+              </div>`;
+              
+              $('.row').append(col);
+            });
+          });
+          $('#more').addClass('hide');
+          $('#close').removeClass('hide');
+        }
       });
     </script>
 
