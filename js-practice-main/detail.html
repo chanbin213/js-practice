@@ -14,45 +14,6 @@
   </head>
   <body>
 
-    <style>
-        ul.list {
-          list-style-type: none;
-          margin: 0;
-          padding: 0;
-          border-bottom: 1px solid #ccc;
-        }
-        ul.list::after {
-          content: '';
-          display: block;
-          clear: both;
-        }
-        .tab-button {
-          display: block;
-          padding: 10px 20px 10px 20px;
-          float: left;
-          margin-right: -1px;
-          margin-bottom: -1px;
-          color: grey;
-          text-decoration: none;
-          cursor: pointer;
-        }
-        .orange {
-          border-top: 2px solid orange;
-          border-right: 1px solid #ccc;
-          border-bottom: 1px solid white;
-          border-left: 1px solid #ccc;
-          color: black;
-          margin-top: -2px;
-        }
-        .tab-content {
-          display: none;
-          padding: 10px;
-        }
-        .show {
-          display: block;
-        }
-      </style>
-
       <div class="container mt-3">
         <div class="card p-3">
           <span class="car-title">상품명</span>
@@ -64,6 +25,30 @@
         var car ={name : '소나타', price : [50000, 30000, 40000], color : 'white'};
         document.querySelector('.car-title').innerHTML = car.name; 
         document.querySelector('.car-price').innerHTML = car.price[0]+'원'; 
+      </script>
+
+      <form class="container my-5 form-group">
+        <p>상품선택</p>
+        <select class="form-select mt-2">
+          <option>모자</option>
+          <option>셔츠</option>
+        </select>
+        <select class="form-select mt-2 form-hide">
+          <option>95</option>
+          <option>100</option>
+        </select>
+      </form>
+
+      <script>
+        $('.form-select').eq(0).on('input', function(){
+          var value = $('.form-select').eq(0).val();
+          if(value == '셔츠'){
+            $('.form-select').eq(1).removeClass('form-hide');
+          }else{
+            $('.form-select').eq(1).addClass('form-hide');
+          }
+        });
+        
       </script>
       
       <div class="container mt-5">
