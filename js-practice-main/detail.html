@@ -32,20 +32,39 @@
         <select class="form-select mt-2">
           <option>모자</option>
           <option>셔츠</option>
+          <option>바지</option>
         </select>
         <select class="form-select mt-2 form-hide">
-          <option>95</option>
-          <option>100</option>
         </select>
       </form>
 
       <script>
+
+        var pants = [28, 30, 32, 34];
+        var shirts = [95, 100, 105, 110];
+
         $('.form-select').eq(0).on('input', function(){
+
           var value = $('.form-select').eq(0).val();
+
           if(value == '셔츠'){
             $('.form-select').eq(1).removeClass('form-hide');
-          }else{
+            $('.form-select').eq(1).empty('temp');
+            shirts.forEach(function(a){
+              $('.form-select').eq(1).append(`<option>${a}</option>`)
+  
+            });
+          }
+          else if(value == '모자'){
             $('.form-select').eq(1).addClass('form-hide');
+          }
+          else if(value == '바지'){
+            $('.form-select').eq(1).removeClass('form-hide');
+            $('.form-select').eq(1).html('');
+            pants.forEach(function(a){
+              $('.form-select').eq(1).append(`<option>${a}</option>`)
+
+            });
           }
         });
         
