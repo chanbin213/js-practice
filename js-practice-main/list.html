@@ -28,6 +28,7 @@
         { id : 2, price : 60000, title : 'Black Monastery' }
       ];
       
+      //array 사용해서 상품보기 만들기
       products.forEach((a)=>{
           var col = 
           `<div class="col-sm-4">
@@ -39,36 +40,112 @@
             $('.row').append(col);
           });
           
-          </script> 
+    </script> 
 
-<div class="container">
-  <button class="btn btn-danger" id="more">더보기</button>
-  <button class="btn btn-danger hide" id="close">닫기</button>
+  <div class="container my-3">
+    <button class="btn btn-danger" id="price">가격순정렬</button>
+  </div>
 
-</div>
+  <div class="container my-3">
+    <button class="btn btn-danger" id="sort1">다나가순정렬</button>
+  </div>
+
+  <div class="container my-3">
+    <button class="btn btn-danger" id="filter">6만원이하</button>
+  </div>
+
+  <div class="container">
+    <button class="btn btn-danger" id="more">더보기</button>
+    <button class="btn btn-danger hide" id="close">닫기</button>
+  </div>
+
+    <script>
+      //가격순 정렬
+      $('#price').click(function(){
+
+        products.sort(function(a, b){
+          return a.price - b.price
+        });
+
+        $('.row').html('');
+
+        products.forEach((a, i)=>{
+          var 템플릿 = 
+          `<div class="col-sm-4">
+            <img src="https://via.placeholder.com/600" class="w-100">
+            <h5>${products[i].title}</h5>
+            <p>가격 : ${products[i].price}</p>
+          </div>`;
+          $('.row').append(템플릿)
+          })
+        }); 
+
+        //다가나순 정렬
+        $('#sort1').click(function(){
+  
+          products.sort(function(a, b){
+            if (a.title < b.title) {
+              return 1
+            } else {
+              return -1
+            }
+          });
+          
+          $('.row').html('');
+          products.forEach((a, i)=>{
+            var 템플릿 = 
+          `<div class="col-sm-4">
+            <img src="https://via.placeholder.com/600" class="w-100">
+            <h5>${products[i].title}</h5>
+            <p>가격 : ${products[i].price}</p>
+          </div>`;
+            $('.row').append(템플릿)
+          })
+        });
+
+        //60000원 이하 상품만 보여주기
+        $('#filter').click(function(){
+          var newproducts = products.filter(function(a){
+            return a.price <= 60000
+          });
+          $('.row').html('');
+          newproducts.forEach((a, i)=>{
+            var 템플릿 = 
+          `<div class="col-sm-4">
+            <img src="https://via.placeholder.com/600" class="w-100">
+            <h5>${newproducts[i].title}</h5>
+            <p>가격 : ${newproducts[i].price}</p>
+          </div>`;
+            $('.row').append(템플릿)
+          })
+        });
+        </script>
 
 <script>
   var count = 0;
-  $('#more').click(function(){
-    count++;
-    if(count == 1){
-      $.get('https://codingapple1.github.io/js/more1.json').done((data) =>{
-        
-        data.forEach((a)=>{
-            var col = 
-            `<div class="col-sm-4" id="seceond">
-              <img src="https://via.placeholder.com/600" class="w-100">
-              <h5>${a.title}</h5>
-              <p>가격 : ${a.price}원</p>
-              </div>`;
-              
-              $('.row').append(col);
+  //ajax를 사용해서 상품 더보기 만들기
+    $('#more').click(function(){
+      count++;
+      if(count == 1){
+        $.get('https://codingapple1.github.io/js/more1.json').done((data) =>{
+          
+          data.forEach((a)=>{
+              var col = 
+              `<div class="col-sm-4" id="seceond">
+                <img src="https://via.placeholder.com/600" class="w-100">
+                <h5>${a.title}</h5>
+                <p>가격 : ${a.price}원</p>
+                </div>`;
+                
+                $('.row').append(col);
+              });
             });
-          });
-    }else if(count == 2){
-      $.get('https://codingapple1.github.io/js/more2.json').done((data) =>{
-        
-        data.forEach((a)=>{
+      }
+      //ajax를 사용해서 상품 더보기 만들기
+      else if(count == 2){
+        $.get('https://codingapple1.github.io/js/more2.json').done((data) =>{
+          
+          data.forEach((a)=>{
             var col = 
             `<div class="col-sm-4" id="third">
               <img src="https://via.placeholder.com/600" class="w-100">
@@ -83,10 +160,10 @@
           $('#close').removeClass('hide');
         }
       });
-    </script>
+      </script>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    
-  </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</body>
 </html>
