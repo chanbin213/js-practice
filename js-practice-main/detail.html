@@ -52,6 +52,19 @@
           display: block;
         }
       </style>
+
+      <div class="container mt-3">
+        <div class="card p-3">
+          <span class="car-title">상품명</span>
+          <span class="car-price">가격</span>
+        </div>
+      </div>
+
+      <script>
+        var car ={name : '소나타', price : [50000, 30000, 40000], color : 'white'};
+        document.querySelector('.car-title').innerHTML = car.name; 
+        document.querySelector('.car-price').innerHTML = car.price[0]+'원'; 
+      </script>
       
       <div class="container mt-5">
         <ul class="list">
