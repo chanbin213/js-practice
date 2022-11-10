@@ -100,13 +100,13 @@
       <div style="overflow: hidden">
         <div class="slide-container">
           <div class="slide-box">
-            <img src="./image/car1.png">
+            <img src="./image/car1.png" draggable="false">
           </div>
           <div class="slide-box">
-            <img src="./image/car2.png">
+            <img src="./image/car2.png" draggable="false">>
           </div>
           <div class="slide-box">
-            <img src="./image/car3.png">
+            <img src="./image/car3.png" draggable="false">>
           </div>
         </div>
      </div> 
@@ -117,6 +117,64 @@
      <button class="next">다음</button>
 
      <script>
+
+       var 시작 = 0;
+       var 누름 = false;
+
+       //1번 사진
+       
+         $('.slide-box').eq(0).on('mousedown', function(e){
+           시작 = e.clientX;
+           누름 = true;
+           console.log(시작);
+          });
+          
+          $('.slide-box').eq(0).on('mousemove', function(e){
+            if(누름 ==true){
+              $('.slide-container').css('transform', `translateX(${e.clientX-시작}px)`)
+            }
+          });
+          
+          $('.slide-box').eq(0).on('mouseup', function(e){
+            누름 = false;
+            console.log(e.clientX-시작);
+            if(e.clientX-시작 < -150){
+              $('.slide-container').css('transform', `translateX(-100vw)`).css('transition','all 0.5s');
+            }else{
+              $('.slide-container').css('transform', 'translateX(0vw)').css('transition','all 0.5s');
+            }
+            setTimeout(()=>{
+              $('.slide-container').css('transition', 'none');
+            }, 500)
+          });
+          
+        
+
+
+         //모바일용 코드
+       $('.slide-box').eq(0).on('touchstart', function(e){
+         시작 = e.touches[0].clientX;
+         누름 = true;
+        });
+
+        $('.slide-box').eq(0).on('touchmove', function(e){
+          if(누름 ==true){
+            $('.slide-container').css('transform', `translateX(${e.touches[0].clientX-시작}px)`)
+          }
+        });
+
+        $('.slide-box').eq(0).on('touchend', function(e){
+          누름 = false;
+          if(e.changedTouches[0].clientX-시작 < -150){
+            $('.slide-container').css('transform', 'translateX(-100vw)').css('transition','all 0.5s');
+          }else{
+            $('.slide-container').css('transform', 'translateX(0vw)').css('transition','all 0.5s');
+          }
+          setTimeout(()=>{
+            $('.slide-container').css('transition', 'none');
+          }, 500)
+         });
+
        var 사진 = 1;
 
        $('.next').on('click', function(){
