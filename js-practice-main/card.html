@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Card</title>
+        <link rel="stylesheet" href="main.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+        
+    </head>
+    <body>
+        <div class="card-background">
+            <div class="card-box">
+              <img src="./image/card1.png">
+            </div>
+            <div class="card-box">
+              <img src="./image/card2.png">
+            </div>
+            <div class="card-box">
+              <img src="./image/card3.png">
+            </div>
+          </div>
+          <script>
+              $(window).scroll(function(){
+
+                var 높이 = $(window).scrollTop();
+                console.log(높이)
+
+                var y1 =  -1/500 * 높이 + 115/50;
+                $('.card-box').eq(0).css('opacity', y1);
+                
+                var z1 = (-1/5000) * 높이 + 565/500;
+                $('.card-box').eq(0).css('transform', `scale( ${z1} )`);
+                
+                var y2 =  -1/550 * 높이 + 39/11;
+                $('.card-box').eq(1).css('opacity', y2);
+                
+                var z2 = (-1/5500) * 높이 + 69/55;
+                $('.card-box').eq(1).css('transform', `scale( ${z2} )`);
+
+                var z3 = (-1/4000) * 높이 + 3/2;
+                $('.card-box').eq(2).css('transform', `scale( ${z3} )`);
+                
+            });
+            // y = a*높이+b
+            // 1 = a * 1400 + b
+            // 0 = a * 1950 + b
+            // 1400
+            // 1950
+
+            //2000
+            //2400
+            // a = -1/550,b = 39/11
+          </script>
+    </body>
+</html>
